@@ -1,5 +1,5 @@
 export function calculateDiscount(price: number, discount: number): number {
-  return price - discount;
+  return price -discount;
 }
 
 export function formatGreeting(name: string, isFormal: boolean): string {
