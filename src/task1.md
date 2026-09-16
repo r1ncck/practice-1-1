@@ -7,40 +7,40 @@
 ## compilerOptions
 
 ### target
-> _Ваш ответ здесь_
+> Указывает, в какую версию JavaScript компилирует наш TypeScript
 
 ### module
-> _Ваш ответ здесь_
+> Определяет как файлы будут связываться друг с другом
 
 ### moduleResolution
-> _Ваш ответ здесь_
+> Настройка, указывающая компилятору алгоритм поисков файлов
 
 ### strict
-> _Ваш ответ здесь_
+> Общий механизм, включающий в себя набор проверок типов для поиска ошибок при компиляции
 
 ### strictNullChecks
-> _Ваш ответ здесь_
+> Опция, делающая null и undefined отдельными самостоятельными типами
 
 ### esModuleInterop
-> _Ваш ответ здесь_
+> Нужен для совместимости со старыми библиотеками
 
 ### skipLibCheck
-> _Ваш ответ здесь_
+> Настройка, которая отключает проверку типов во всех файлах 
 
 ### forceConsistentCasingInFileNames
-> _Ваш ответ здесь_
+> Флаг, который запрещает импортировать файлы с нарушением регистра
 
 ### outDir
-> _Ваш ответ здесь_
+> Настройка указывающая в какую папку TypeScript будет сохранять скомпелированные файлы
 
 ### rootDir
-> _Ваш ответ здесь_
+> Настройка указывающая какой папкой TypeScript будет считать исходной для кода
 
 ## include
-> _Ваш ответ здесь_
+> Настройка указывающая TypeScript какие файлы и папки он может обрабатывать
 
 ## exclude
-> _Ваш ответ здесь_
+> Настройка указывающая какие файлы TypeScript будет игнорировать при компиляции
 
 # Задание 1.2. Включение флагов
 
@@ -56,7 +56,7 @@
 Включите опцию, которая делает `null` и `undefined` отдельными типами,
 а не «совместимыми со всем». Без неё код с `null` компилируется, с ней — нет.
 
-**Ваш ответ:** `_______`
+**Ваш ответ:** `strictNullChecks: true`
 
 ---
 
@@ -64,7 +64,7 @@
 Включите опцию, которая ругается, если внутри функции используется `this`,
 но функция не является методом класса (то есть `this` не определён).
 
-**Ваш ответ:** `_______`
+**Ваш ответ:** `noImplicitThis: true`
 
 ---
 
@@ -72,7 +72,7 @@
 Включите опцию, которая ругается, если переменная получает тип `any`
 автоматически (например, функция без аннотаций параметров).
 
-**Ваш ответ:** `_______`
+**Ваш ответ:** `noImplicitAny: true`
 
 ---
 
@@ -80,5 +80,53 @@
 Включите опцию, которая требует, чтобы **все** ветки функции возвращали значение,
 если функция объявлена как возвращающая не-`void`.
 
-**Ваш ответ:** `_______`
+**Ваш ответ:** `noImplicitReturns: true`
 
+`src/task3-null.ts:4:50 - error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+4 export function greet(name: string | undefined): string {
+                                                   ~~~~~~
+
+src/task3-null.ts:11:72 - error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+11 export function applyDiscount(price: number, discount: number | null): number {
+                                                                          ~~~~~~
+
+src/task3-null.ts:20:60 - error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+20 export function getErrorMessage(code: number | undefined): string {
+                                                              ~~~~~~
+
+src/task5-states.ts:10:51 - error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+10 export function canWithdraw(state: AccountState): boolean {
+                                                     ~~~~~~~
+
+src/task5-states.ts:20:56 - error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+20 export function getStatusMessage(state: AccountState): string {
+                                                          ~~~~~~
+
+src/task5-states.ts:27:69 - error TS2355: A function whose declared type is neither 'undefined', 'void', nor 'any' must return a value.
+
+27 export function freezeAccount(state: AccountState, reason: string): AccountState {
+                                                                       ~~~~~~~~~~~~
+
+tests/task4.test.ts:2:41 - error TS2306: File 'C:/Users/Ринат/practice-1-1/src/task4-union.ts' is not a module.
+
+2 import { convert, formatCurrency } from "../src/task4-union";
+                                          ~~~~~~~~~~~~~~~~~~~~
+
+tests/task6.test.ts:2:61 - error TS2306: File 'C:/Users/Ринат/practice-1-1/src/task6-star.ts' is not a module.
+
+2 import { parseStatus, canTransition, getNextStatuses } from "../src/task6-star";
+                                                              ~~~~~~~~~~~~~~~~~~~
+
+
+Found 8 errors in 4 files.
+
+Errors  Files
+     3  src/task3-null.ts:4
+     3  src/task5-states.ts:10
+     1  tests/task4.test.ts:2
+     1  tests/task6.test.ts:2`
