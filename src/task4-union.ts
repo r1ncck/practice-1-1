@@ -6,6 +6,31 @@ export type Currency = "RUB" | "USD" | "EUR";
 // 1 EUR = 100 RUB
 
 export function convert(amount: number, from: Currency, to: Currency): number {
+    if (from === to){
+        return amount;
+    }
+    let rubAmount: number;
+
+    switch (from){
+        case "RUB":
+            rubAmount = amount;
+            break;
+        case "USD":
+            rubAmount = amount * 90;
+            break;
+        case "EUR":
+            rubAmount = amount * 100;
+            break;
+    }
+
+    switch (to){
+        case "RUB":
+            return rubAmount;
+        case "USD":
+            return rubAmount / 90;
+        case "EUR":
+            return rubAmount / 100;
+    }
   // Напишите код здесь
   // Алгоритм:
   // 1. Если from === to, вернуть amount
@@ -13,6 +38,6 @@ export function convert(amount: number, from: Currency, to: Currency): number {
 }
 
 export function formatCurrency(amount: number, currency: Currency): string {
-  // Вернуть строку вида "100 RUB" или "50.5 USD"
-  // Напишите код здесь
+    // Вернуть строку вида "100 RUB" или "50.5 USD"
+  return `${amount} ${currency}`;
 }
